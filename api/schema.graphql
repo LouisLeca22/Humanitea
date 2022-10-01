@@ -1,0 +1,47 @@
+type Query {
+    currentUser: Current
+    posts(categoryId: ID): [Post!]
+    post(id: ID!): Post
+}
+
+type Mutation {
+    createPost(input: PostInput!): Post
+    deletePost(id: ID!): Post
+    updatePost(id: ID, input: PostInput!): Post
+}
+
+type Current {
+    id: ID!
+    username: String!
+}
+
+type Post {
+    id: ID!
+    title: String!
+    desc: String!
+    img: String!
+    published: Boolean!
+    createdAt: String!
+    author: User!
+    cat: Category!
+}
+
+type User {
+    id: ID!
+    username: String! 
+    posts: [Post!]
+}
+
+type Category {
+    id: ID!
+    name: String! 
+    posts: [Post!]
+}
+
+input PostInput {
+    title: String!
+    desc: String!
+    img: String!
+    cat: String! 
+}
+
